@@ -7,3 +7,41 @@ header{
 #logo{
     padding: 4px;
 }
+
+#body-conteudo{
+    display: flex;
+    flex-direction: column;
+    margin: 3.125vh 22.38vw;
+    justify-content: space-between;
+}
+
+#body-conteudo p{
+    font-size: 1.2em;
+}
+
+section{
+    margin: 1em;
+    margin-bottom: 2em;
+}
+
+.titulo-secoes{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.cartao {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    height: 140px;
+}
+
+#caixa-branca{
+    width: auto;
+    height: 200px;
+    border-radius: 10px;
+    background-color: white;
+}
