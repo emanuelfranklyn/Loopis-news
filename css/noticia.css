@@ -7,3 +7,13 @@
     background-color: #001534;
     z-index: -1; 
 }
+
+main {
+    margin: 0 9.38vw;
+}
+
+.img-noticia {
+    width: 52.15vw;
+    height: 37.35vh;
+    border-radius: 10px;
+}
