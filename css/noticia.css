@@ -8,6 +8,12 @@
     z-index: -1; 
 }
 
+.header-pagina {
+    display: flex;
+    margin: 3.125vh 9.38vw;
+    justify-content: space-between;
+}
+
 main {
     margin: 0 9.38vw;
 }
@@ -16,4 +22,30 @@ main {
     width: 52.15vw;
     height: 37.35vh;
     border-radius: 10px;
+}
+
+.noticia {
+    box-sizing: border-box;
+    width: 52.15vw;
+    background-color: #fff;
+    padding: 3.125vh 4.44vw;
+    margin-top:  1.5625vh;
+    border-radius: 10px;
+}
+
+.informacoes {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #1B1F26;
+    opacity: 72%;
+}
+
+.descricao {
+    margin: 0.78125vh 0;
+    opacity: 72%;
+}
+
+.conteudo {
+    margin-top: 3.125vh; 
 }

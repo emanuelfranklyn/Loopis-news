@@ -9,9 +9,3 @@ body {
     background-color: #F4F5F7;
     font-family: "Roboto", serif;
 }
-
-.header-pagina {
-    display: flex;
-    margin: 3.125vh 9.38vw;
-    justify-content: space-between;
-}
