@@ -30,13 +30,44 @@ section{
     margin-bottom: 1em;
 }
 
+.linha{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.linha img{
+    width: 42px;
+    height: 42px;
+
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
 .cartao {
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 150px;
-    height: 140px;
+    width: 140px;
+    height: 130px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartao p{
+    text-align: center;
+}
+
+/* Aplica o efeito na segunda linha de cartoes */
+.linha:nth-child(3){
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 #caixa-branca{
