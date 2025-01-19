@@ -166,6 +166,7 @@ html, body {
   width: 100%;
   padding: 1rem;
   isolation: isolate;
+  position: relative;
 }
 
 #footer::before {
