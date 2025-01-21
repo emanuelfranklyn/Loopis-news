@@ -1,0 +1,18 @@
+header{
+    background-color: #001534;
+    padding: 25px 0px 25px 0px;
+    display: flex;
+}
+.arrow_left{
+    margin-right: auto;
+    padding-left: 128px;
+}
+.arrow_left:hover{
+    cursor: pointer;
+}
+.logoLoopis{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
