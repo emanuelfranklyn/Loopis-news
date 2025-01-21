@@ -18,10 +18,14 @@ header{
 }
 .campo-pesquisa{
     margin-top: 50px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
 }
 form input{
-    width: 300px;
+    width: 280px;
     height: 45px;
     outline: none;
     padding-left: 20px;
@@ -29,10 +33,27 @@ form input{
     border: none;
     color: white;
     font-size: 18px;
-    margin-right: 0px;
-    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 form input::placeholder{
     font-size: 18px;
     color: white;
+}
+button img{
+    width: 25px;
+    height: 25px;
+}
+button{
+    background-color: #001534;
+    outline:none;
+    border: none;
+    height: 45px;
+    width: 50px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+button:hover{
+    cursor: pointer;
+    background-color: #032b66;
 }
