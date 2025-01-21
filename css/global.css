@@ -23,6 +23,7 @@
   /*==========[Home Page]==========*/
   --carrousel-text-color: var(--text-light);
   --carrousel-text-backdrop: #00000027;
+  --carrousel-background-tint: var(--dark-blue);
 }
 
 * {

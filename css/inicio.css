@@ -1,3 +1,222 @@
 #pageContent {
   height: fit-content;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.mainContent {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.headLineCarrousel {
+  --sidebar-gap: 1rem;
+  --background-blur: 2rem;
+  --carrousel-navigation-arrows-size: 2rem;
+  --carrousel-navigation-arrows-margin: 0.5rem;
+  --carrousel-image-transition: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-left: -1rem; /* to account for the rounding effect */
+  height: 13rem;
+}
+
+.headLineCarrouselCover::before, .headLineCarrouselCover::after {
+  content: '';
+  width: var(--sidebar-gap);
+  background: var(--page-background);
+  position: absolute;
+  z-index: 5;
+}
+
+.headLineCarrouselCover::before {
+  height: var(--sidebar-gap);
+  bottom: 0;
+}
+
+.headLineCarrouselCover::after {
+  height: 100%;
+  top: 0;
+}
+
+.headLineCarrouselCover.leftCover::before {
+  left: var(--sidebar-gap);
+  mask-image: radial-gradient(circle var(--sidebar-gap) at 100% 0, transparent 0, transparent 100%, black 100%);
+}
+
+.headLineCarrouselCover.leftCover::after {
+  left: 0;
+  border-top-right-radius: 1rem;
+}
+
+.headLineCarrouselCover.rightCover::before {
+  right: var(--sidebar-gap);
+  mask-image: radial-gradient(circle var(--sidebar-gap) at 0 0, transparent 0, transparent 100%, black 100%);
+}
+
+.headLineCarrouselCover.rightCover::after {
+  right: 0;
+  border-top-left-radius: 1rem;
+}
+
+.headLineCarrouselBGContainer, .headLineCarrouselBGOverlays {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  z-index: -1;
+}
+
+.headLineCarrouselBG1, .headLineCarrouselBG2 {
+  inset: calc(var(--background-blur) * -2);
+  position: absolute;
+  background: var(--currentNews-image);
+  background-size: contain;
+  z-index: -1;
+  filter: blur(var(--background-blur));
+}
+
+.headLineCarrouselBG2 {
+  background: var(--nextNews-image);
+  background-size: contain;
+  opacity: var(--carrousel-image-transition);
+  transition: opacity 0.5s ease;
+}
+
+.headLineCarrouselBGOverlays {
+  background: var(--carrousel-background-tint);
+  opacity: 0.45;
+}
+
+.headLineCarrouselContent {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hlcControlsArrow {
+  width: var(--carrousel-navigation-arrows-size);
+  aspect-ratio: 1;
+  height: auto;
+  position: absolute;
+  border: 0;
+  background: transparent;
+  stroke: var(--carrousel-text-color);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  background: transparent;
+}
+
+.hlcControlsArrow:hover {
+  background: var(--carrousel-text-backdrop);
+}
+
+.hlcControlsPreviousHeadline {
+  left: calc(var(--sidebar-gap) + var(--carrousel-navigation-arrows-margin));
+}
+
+.hlcControlsNextHeadline {
+  right: calc(var(--sidebar-gap) + var(--carrousel-navigation-arrows-margin));
+  rotate: 180deg;
+}
+
+#hlcHeadLines {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: calc(100% - var(--sidebar-gap));
+  height: 100%;
+  gap: 1rem;
+}
+
+.hlcHeadLinesImgWrapper {
+  height: 100%;
+  width: fit-content;
+  position: relative;
+  mask-image: linear-gradient(to right, black 95%, transparent 99%);
+  transition: width 0.25s ease;
+  overflow: hidden;
+}
+
+.hlcHeadLinesImgCurrent {
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+
+.hlcHeadLinesImgNextEffect {
+  position: absolute;
+  inset: calc(var(--background-blur) * -2);
+  width: calc(100% + (var(--background-blur) * 4));
+  height: calc(100% + (var(--background-blur) * 4));
+  object-fit: cover;
+  filter: blur(var(--background-blur));
+  opacity: var(--carrousel-image-transition);
+  transition: opacity 0.25s ease;
+}
+
+.hlcHeadLinesImgNext {
+  position: absolute;
+  inset: 0;
+  width: fit-content;
+  height: 100%;
+  object-fit: contain;
+  mask-image: linear-gradient(to right, black 95%, transparent 99%);
+  opacity: var(--carrousel-image-transition);
+  transition: opacity 0.25s ease;
+}
+
+.hlcHeadLinesTextContent {
+  margin-right: calc(var(--carrousel-navigation-arrows-margin) + var(--carrousel-navigation-arrows-size));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hlcHeadLinesTextContentTitle {
+  font-size: 2rem;
+  color: var(--carrousel-text-color);
+  font-weight: bold;
+  text-align: left;
+}
+
+#carrouselItemsIndicator {
+  --currentNews: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--carrousel-text-color);
+  width: fit-content;
+  border-radius: 100vw;
+}
+
+#carrouselItemsIndicator div {
+  aspect-ratio: 1;
+  width: 0.75rem;
+  background: var(--carrousel-text-color);
+  border-radius: 50%;
+}
+
+/*==========[--max-page-width]==========*/
+@media screen and (max-width: 1440px) {
+  .headLineCarrousel {
+    margin-left: 0;
+  }
+
+  .headLineCarrouselCover.leftCover {
+    display: none;
+  }
+
+  .hlcControlsPreviousHeadline {
+    left: 0.5rem;
+  }
 }

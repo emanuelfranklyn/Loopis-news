@@ -6,12 +6,13 @@
     <title>Loopis News - Inicio</title>
     <link href="../css/global.css" rel="stylesheet" type="text/css">
     <link href="../css/inicio.css" rel="stylesheet" type="text/css">
+    <script defer src="../js/homepage.js"></script>
   </head>
   <body>
     <header id="header">
-      <div class="leftSideNavigation hidden">
+      <div class="leftSideNavigation">
         <button id="headerSkipNavigation" onclick="skipNavigation()">Pular Navegação</button>
-        <a class="headerPageLink" href="" title="Voltar">
+        <a class="headerPageLink hidden" href="" title="Voltar">
           <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -32,14 +33,46 @@
     </header>
 
     <div id="pageContent">
-      <div class="headLineCarrousel">
-        <div>
-          <button class="hlcControlsArrow hlcControlsPreviousHeadline"></button>
-          <div class="hlcHeadLines"></div>
-          <button class="hlcControlsArrow hlcControlsNextHeadline"></button>
+      <div class="mainContent">
+        <div id="headLineCarrousel" class="headLineCarrousel" style="--currentNews-image: unset; --nextNews-image: unset">
+          <div class="headLineCarrouselCover leftCover"></div>
+          <div class="headLineCarrouselBGContainer">
+            <div class="headLineCarrouselBG1"></div>
+            <div class="headLineCarrouselBG2"></div>
+            <div class="headLineCarrouselBGOverlays"></div>
+          </div>
+          <div class="headLineCarrouselContent">
+            <button id="goToPreviousCarrouselItem" class="hlcControlsArrow hlcControlsPreviousHeadline">
+              <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="hlcHeadLines">
+              <div id="hlcHeadLinesImgWrapper" class="hlcHeadLinesImgWrapper">
+                <img id="hlcHeadLinesImgCurrent" class="hlcHeadLinesImgCurrent" src="">
+                <img id="hlcHeadLinesImgNextEffect" class="hlcHeadLinesImgNextEffect" src="">
+                <img id="hlcHeadLinesImgNext" class="hlcHeadLinesImgNext" src="">
+              </div>
+              <div class="hlcHeadLinesTextContent">
+                <h1 class="hlcHeadLinesTextContentTitle">Destaques</h1>
+                <h2 id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle">Carregando...</h2>
+                <p id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente fuga suscipit, veritatis molestias numquam voluptatum eligendi dolore doloremque aliquam, cupiditate quasi asperiores est dolorum aut beatae harum ipsum ab quas.</p>
+                <div id="carrouselItemsIndicator"></div>
+              </div>
+            </div>
+            <button id="goToNextCarrouselItem" class="hlcControlsArrow hlcControlsNextHeadline">
+              <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="hlcIndicators">
+          </div>
+          <div class="headLineCarrouselCover rightCover"></div>
         </div>
-        <div class="hlcIndicators">
-        </div>
+      </div>
+      <div class="sideBar">
+
       </div>
     </div>
 
