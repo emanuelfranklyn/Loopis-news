@@ -16,3 +16,23 @@ header{
     transform: translateX(-50%);
 
 }
+.campo-pesquisa{
+    margin-top: 50px;
+    text-align: center;
+}
+form input{
+    width: 300px;
+    height: 45px;
+    outline: none;
+    padding-left: 20px;
+    background-color: #6D6D6D;
+    border: none;
+    color: white;
+    font-size: 18px;
+    margin-right: 0px;
+    border-radius: 3px;
+}
+form input::placeholder{
+    font-size: 18px;
+    color: white;
+}
