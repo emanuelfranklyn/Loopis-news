@@ -45,7 +45,8 @@ button img{
     height: 25px;
 }
 button{
-    background-color: #001534;
+    /* background-color: #001534; */
+    background-color: #0521d6;
     outline:none;
     border: none;
     height: 45px;
@@ -56,4 +57,58 @@ button{
 button:hover{
     cursor: pointer;
     background-color: #032b66;
+}
+#sectionNoticias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+#noticias{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+#noticias div{
+    background-color: #fffcfc;
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgb(182, 168, 168);
+}
+#noticias div img{
+    width: 330px;
+    height: 170px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+#noticias div h5{
+    padding-left: 15px;
+    padding-top: 6px;
+}
+#noticias div #dataHora{
+    padding-left: 15px;
+    padding-top: 8px;
+    font-size: 10px;
+
+}
+#noticias div #descricao{
+    padding-left: 15px;
+    padding-top: 15px;
+    font-size: 13px;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.link a{
+    text-decoration: none;
+    font-size: 15px;
+    color: #001EE4;
+}
+.link a:hover{
+    color: #1935ee;
+
 }
