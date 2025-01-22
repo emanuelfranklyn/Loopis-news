@@ -10,6 +10,9 @@
 
   /*==========[Functional Variables]==========*/
   --page-background: var(--background-light);
+  --text-color: var(--text-dark);
+  --text-dark-background: var(--text-light);
+  --light-element-backdrop: #0007;
   
   /*==========[Logo]==========*/
   --Loopis-logo-color: var(--text-dark);
@@ -24,6 +27,13 @@
   --carrousel-text-color: var(--text-light);
   --carrousel-text-backdrop: #00000027;
   --carrousel-background-tint: var(--dark-blue);
+  --carrousel-indicator-selected-color: var(--logo-Blue);
+  --carrousel-indicator-default-luminance-variation: 100; /* -100 for black, 0 to make the color equal to the selected one, 100 for white*/
+  --card-background: var(--foreground-light);
+
+  /*===[loading-bars]===*/
+  --loading-gray: #a1a1a1;
+  --loading-accent-gray: #d3d3d3;
 }
 
 * {
@@ -55,6 +65,7 @@ html, body {
   position: sticky;
   top: 0;
   isolation: isolate;
+  z-index: 9999;
 }
 
 #header::before {
@@ -96,12 +107,12 @@ html, body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.5em;
   width: 100%;
 }
 
 #header .logoArea .lnLogoImg {
-  height: 2.25rem;
+  height: 2.25em;
 }
 
 #header .logoArea .lnLogoText {
@@ -180,10 +191,47 @@ html, body {
   z-index: -1;
 }
 
+.loadingBar {
+  height: 1rem;
+  width: 100%;
+  background: linear-gradient(to right, var(--loading-gray) 0%, var(--loading-accent-gray) 50%, var(--loading-gray) 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  border-radius: 1rem;
+  animation: loadingScroll 5s linear infinite;
+  display: inline-block;
+}
+
+.loadingBar.half {
+  width: 50%;
+}
+
+.loadingImage {
+  aspect-ratio: 16/9;
+  height: 100%;
+  background: linear-gradient(to right, var(--loading-gray) 0%, var(--loading-accent-gray) 50%, var(--loading-gray) 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: loadingScroll 5s linear infinite;
+}
+
+@keyframes loadingScroll {
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
 /*==========[--max-page-width]==========*/
 @media screen and (max-width: 1440px) {
   #header::before, #footer::before {
     display: none !important;
   }
   
+}
+
+/*==========[Mobile Layout]==========*/
+@media only screen and (max-width: 768px) {
+  #header .logoArea {
+    font-size: 0.75rem;
+  }
 }

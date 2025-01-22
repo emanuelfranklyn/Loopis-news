@@ -42,25 +42,32 @@
             <div class="headLineCarrouselBGOverlays"></div>
           </div>
           <div class="headLineCarrouselContent">
-            <button id="goToPreviousCarrouselItem" class="hlcControlsArrow hlcControlsPreviousHeadline">
+            <button id="goToPreviousCarrouselItem" class="hlcControlsArrow hlcControlsPreviousHeadline" onclick="goToPreviousCarrouselItem()">
               <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
             <div id="hlcHeadLines">
-              <div id="hlcHeadLinesImgWrapper" class="hlcHeadLinesImgWrapper">
+              <div id="hlcHeadLinesImgWrapper" class="hlcHeadLinesImgWrapper" onclick="carrouselGoToArticle()">
+                <div id="carrouselImagePlaceHolderImage" class="loadingImage"></div>
                 <img id="hlcHeadLinesImgCurrent" class="hlcHeadLinesImgCurrent" src="">
                 <img id="hlcHeadLinesImgNextEffect" class="hlcHeadLinesImgNextEffect" src="">
                 <img id="hlcHeadLinesImgNext" class="hlcHeadLinesImgNext" src="">
               </div>
               <div class="hlcHeadLinesTextContent">
                 <h1 class="hlcHeadLinesTextContentTitle">Destaques</h1>
-                <h2 id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle">Carregando...</h2>
-                <p id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente fuga suscipit, veritatis molestias numquam voluptatum eligendi dolore doloremque aliquam, cupiditate quasi asperiores est dolorum aut beatae harum ipsum ab quas.</p>
+                <a href="javascript:carrouselGoToArticle()" title="Carregando..."><h2 id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle"><span class="loadingBar half"></span></h2></a>
+                <p id="hlcHeadLinesTextContentArticleDescription" class="hlcHeadLinesTextContentArticleDescription">
+                  <span class="loadingBar"></span>
+                  <span class="loadingBar"></span>
+                  <span class="loadingBar"></span>
+                  <span class="loadingBar"></span>
+                  <span class="loadingBar half"></span>
+                </p>
                 <div id="carrouselItemsIndicator"></div>
               </div>
             </div>
-            <button id="goToNextCarrouselItem" class="hlcControlsArrow hlcControlsNextHeadline">
+            <button id="goToNextCarrouselItem" class="hlcControlsArrow hlcControlsNextHeadline" onclick="goToNextCarrouselItem()">
               <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -70,12 +77,19 @@
           </div>
           <div class="headLineCarrouselCover rightCover"></div>
         </div>
+        <div class="pageBody">
+          <div class="sideBarMobile">
+            <h1 class="sectionTitle">Últimas notícias</h1>
+            <div id="atfSidebarMobile"></div>
+          </div>
+          <div id="proceduralSections"></div>
+        </div>
       </div>
       <div class="sideBar">
-
+        <h1 class="sectionTitle">Últimas notícias</h1>
+        <div id="atfSidebar"></div>
       </div>
     </div>
-
     <footer id="footer">
       <h1>footer</h1>
     </footer>
