@@ -112,3 +112,15 @@ button:hover{
     color: #1935ee;
 
 }
+@media screen  and (max-width: 896px ){
+    .arrow_left{
+        padding-left: 5px;
+    }
+    form input{
+        width: 250px;
+    }
+    #noticias{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+}
