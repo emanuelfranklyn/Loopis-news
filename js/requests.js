@@ -35,6 +35,19 @@ function setLocalStorage(atribute, value){
     localStorage.setItem(localStorageKey, JSON.stringify(currentObject));
 }
 
+const currentArticleKey = 'currentArticle';
+
+// Guarda uma noticia para que possa ser visualizada em noticia.html
+function saveCurrentArticle(articleObject){
+    localStorage.setItem(currentArticleKey, JSON.stringify(articleObject));
+}
+
+// Recebe a noticia selecionada atualmente para exibir na tela
+function getCurrentArticle(){
+    const currentArticleString = localStorage.getItem(currentArticleKey);
+    return JSON.parse(currentArticleString);
+}
+
 async function readToken() {
     const atributeName = 'apiKey';
     const allPages = getLocalStorage();
@@ -86,8 +99,8 @@ function factoryRequisitionEverything(sortBy, atributeName) {
     }
 }
 
-// Retorna uma funcao que faz uma requisicao para o endereco everything da API
-// Essa chamada eh feita com base no atributo sortBy
+// Retorna uma funcao que faz uma requisicao para o endereco headlines da API
+// Essa chamada eh feita com base no atributo category
 function factoryRequisitionHeadlines(category, atributeName) {
     return async ()=>{
         const allPages = getLocalStorage();
