@@ -1,6 +1,11 @@
+body{
+    width: 100%;
+}
+
 header{
     background-color: #001534;
     padding: 10px;
+    margin: 3.125vh 0 !important;
     z-index: -1;
 }
 
@@ -10,9 +15,11 @@ header{
 
 #body-conteudo{
     display: flex;
-    flex-direction: column;
-    margin: 3.125vh 22.38vw;
+    flex-direction: column;    
     justify-content: space-between;
+
+    margin: 0px 9.5%;
+    background-color: #F4F5F7;
 }
 
 #body-conteudo p:not(#caixa-branca p){
@@ -24,6 +31,7 @@ section{
     margin-bottom: 2em;
 }
 
+
 .titulo-secoes{
     display: flex;
     justify-content: center;
@@ -31,10 +39,17 @@ section{
 }
 
 .linha{
+    --cartao-width: 140px;
+    --padding-cartao: 30px;
+
+    max-width: calc((var(--cartao-width) + (var(--padding-cartao)*2)) * 3 + (1rem * 2));
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-top: 20px;
+    margin-inline: auto;
 }
 
 .linha img{
@@ -48,11 +63,11 @@ section{
 
 .cartao {
     background: white;
-    padding: 30px;
+    padding: var(--padding-cartao);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 140px;
-    height: 130px;
+    width: var(--cartao-width);
+    height: var(--cartao-width);
 
     display: flex;
     flex-direction: column;
@@ -62,12 +77,6 @@ section{
 
 .cartao p{
     text-align: center;
-}
-
-/* Aplica o efeito na segunda linha de cartoes */
-.linha:nth-child(3){
-    padding-left: 15%;
-    padding-right: 15%;
 }
 
 #caixa-branca{
