@@ -2,6 +2,10 @@ const maxAge = 2 * 60 * 60 * 1000; // 2 horas
 const keyToAge = "date";
 const localStorageKey = "loopis-news";
 
+const maxResultNumber=10;
+const sitesDomain = "domains=nytimes.com,cnn.com,washingtonpost.com";
+const language = 'en';
+
 // Recria o localStorage se ele estiver por um prazo em milissegundos maior que maxAge
 function getLocalStorage(){
     const currentDate = new Date();
@@ -64,17 +68,22 @@ async function readToken() {
     return apiKeyToken;
 }
 
-const maxResultNumber=6;
-const sitesDomain = "domains=nytimes.com,cnn.com,washingtonpost.com";
-const language = 'en';
-
 // Retorna uma funcao que faz uma requisicao para o endereco everything da API
 // Essa funcao ordena com base no atributo sortBy
 // Ela tambem recebe um atributeName que permite encontra-lo no localStorage
 function factoryRequisitionEverything(sortBy, atributeName) {
     return async (pesquisa)=>{
         const allPages = getLocalStorage();
-        let currentPage = allPages[atributeName]
+
+        atributeName = !pesquisa ? atributeName : pesquisa;
+        let currentPage = allPages[atributeName];
+
+        if(currentPage == pesquisa){
+            console.log("Bom");
+        }
+        else{
+            console.log("Ruim");
+        }
 
         //Se nao estiver no localStorage busca e salva
         if(!currentPage){
@@ -137,9 +146,9 @@ async function fetchLatest() {
     return await results();
 }
 
-async function fetchSearch() {
+async function fetchSearch(keywords) {
     const results = factoryRequisitionEverything('relevancy', 'search');
-    return await results();
+    return await results(keywords);
 }
 
 
