@@ -38,12 +38,12 @@ function setLocalStorage(atribute, value){
 const currentArticleKey = 'currentArticle';
 
 // Guarda uma noticia para que possa ser visualizada em noticia.html
-function saveCurrentArticle(articleObject){
+export function saveCurrentArticle(articleObject){
     localStorage.setItem(currentArticleKey, JSON.stringify(articleObject));
 }
 
 // Recebe a noticia selecionada atualmente para exibir na tela
-function getCurrentArticle(){
+export function getCurrentArticle(){
     const currentArticleString = localStorage.getItem(currentArticleKey);
     return JSON.parse(currentArticleString);
 }
@@ -132,7 +132,7 @@ async function fetchHighlights(){
     return await results();
 }
 
-async function fetchLatest() {
+export async function fetchLatest() {
     const results = factoryRequisitionEverything('publishedAt', 'latest');
     return await results();
 }
@@ -162,10 +162,10 @@ async function fetchTechnology() {
 
 // Retorna um objeto contendo as 3 categorias utilizadas no site
 // returns { sports: [{...}], politics: [{...}], technology: [{...}] }
-async function fetchCategories(){
+export async function fetchCategories(){
     const sports = await fetchSports();
-    const politics = await fetchTechnology();
-    const technology = await fetchSports();
+    const politics = await fetchPolitics();
+    const technology = await fetchTechnology();
 
     return {
         sports,
