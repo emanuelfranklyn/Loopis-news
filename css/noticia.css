@@ -1,4 +1,4 @@
-#fundo-azul {
+#page-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -8,10 +8,15 @@
     z-index: -1; 
 }
 
-.header-pagina {
+.page-header {
     display: flex;
     margin: 3.125vh 9.38vw;
     justify-content: space-between;
+}
+
+#loopis-news-logo {
+    width: 15vw;
+    height: auto;
 }
 
 .wrapper {
@@ -23,13 +28,13 @@ main {
     margin-right: 2.22vw;
 }
 
-.img-noticia {
+.main-news-image {
     width: 52.15vw;
-    height: 37.35vh;
+    height: auto;
     border-radius: 10px;
 }
 
-.noticia {
+.main-news {
     box-sizing: border-box;
     width: 52.15vw;
     background-color: #fff;
@@ -38,7 +43,7 @@ main {
     border-radius: 10px;
 }
 
-.informacoes {
+.main-news-info {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -47,16 +52,20 @@ main {
     font-size: 0.9rem;
 }
 
-.descricao {
+.main-news-description {
     margin: 0.78125vh 0;
     opacity: 72%;
 }
 
-.conteudo {
+.main-news-content {
     margin-top: 3.125vh; 
 }
 
-.lista-noticias {
+.sidebar-title {
+    font-size: 1.25vw
+}
+
+.news-list {
     padding: 1.56vh 1.11vw;
     border-radius: 10px;
     margin-bottom: 1.56vh;
@@ -64,34 +73,27 @@ main {
     list-style-type: none;
 }
 
-.item-aside {
+.news-item {
     display: flex;
     align-items: center;
     margin-bottom: 1.56vh;
 }
 
-.img-aside {
-    width: 7.78vw;
-    height: 6.16vh;
+.news-image {
+    width: 6.5vw;
+    height: auto;
 }
 
-.info-aside {
+.news-info {
     margin-left: 0.56vw;
 }
 
-.titulo-aside {
-    font-size: 1rem;
+.news-title {
+    font-size: 0.85vw;
 }
 
-.data-aside {
-    font-weight: bold;
-    color: #1B1F26;
-    opacity: 72%;
-    font-size: 0.9rem;
-}   
-
 @media (max-width: 1023px) {
-    .barra-lateral {
+    .sidebar {
         display:none;
     }
 
@@ -100,25 +102,30 @@ main {
         width: 100%
     }
 
-    .img-noticia {
+    .main-news-image {
         width: 100%;
     }
 
-    .noticia {
+    .main-news {
         width: 100%;
     }
 
-    #logo-loopis {
+    #loopis-news-logo {
         width:  25.35vw;
     }
 }
 
-@media (max-width: 767px) {
-    .icon-header {
+@media (max-width: 479px) {
+    .page-header-icon {
         width: 4.17vw;
     }
 
-    #logo-loopis {
+    #loopis-news-logo {
         width: 33.8vw;
+    }
+
+    .wrapper {
+        margin: 0;
+        width: 100vw;
     }
 }
