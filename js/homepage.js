@@ -2,6 +2,18 @@
 const carrouselImageTransitionDuration = 250; // in milliseconds
 const carrouselAutoPlayDelay = 15 * 1000; // 15 seconds in milliseconds
 const endPageUrlsWithDotHTML = true;
+const maxTitleLength = 50;
+const latest = [];
+const categories = {};
+const latestNewsSize = 4;
+const categoryNewsSize = 5;
+const firstCategoryNewsIsHighLight = true;
+const categoryTranslationKeys = {
+  latest: 'Últimas notícias',
+  sports: 'Esportes',
+  politics: 'Política',
+  technology: 'Tecnologia'
+};
 
 // html elements
 const headLineCarrousel = document.getElementById('headLineCarrousel');
@@ -16,19 +28,15 @@ const carrouselImagePlaceHolderImage = document.getElementById('carrouselImagePl
 const sidebarContainer = document.getElementById('atfSidebar');
 const sideBarMobile = document.getElementById('atfSidebarMobile');
 const proceduralSections = document.getElementById('proceduralSections');
+const proceduralSectionsAfterSideBar = document.getElementById('contentAfterSideBarProcedural');
 
 // Global variables
-let fetchedArticles = {
-  headlines: [],
-  highlights: [],
-  sports: [],
-  politics: [],
-  technology: [],
-};
 // carrousel variables
 let carrouselNews = [];
 let carrouselCurrentItem = 0;
 let carrouselAutoPlayInterval;
+let stillBeforeSideBar = true;
+let articleCounter = 0;
 
 // functions
 // carrousel functions
@@ -98,7 +106,7 @@ function goToPreviousCarrouselItem() {
 
 // article navigation
 function goToArticle(article) {
-  // TODO: logic to save article on localStorage
+  saveCurrentArticle(article);
   const pathNameParts = window.location.pathname.split('/');
   pathNameParts.pop();
   window.location.pathname = `${pathNameParts.join('/')}/noticia${endPageUrlsWithDotHTML ? '.html' : ''}`;
@@ -113,6 +121,8 @@ function carrouselGoToArticle() {
 // section generators
 function createNewsBlock(article, highligh) {
   const articleBlock = document.createElement('div');
+  articleBlock.style.setProperty('--index', articleCounter);
+  articleCounter++;
   articleBlock.onclick = () => {
     goToArticle(article);
   };
@@ -133,7 +143,7 @@ function createNewsBlock(article, highligh) {
   const articleTitle = document.createElement('a');
   articleTitle.href = '#';
   articleTitle.classList.add('abTitle');
-  articleTitle.innerText = article.title;
+  articleTitle.innerText = article.title.length > maxTitleLength ? `${article.title.substring(0, maxTitleLength - 3)}...` : article.title;
 
   articleBlock.appendChild(abImageWrapper);
   articleBlock.appendChild(articleTitle);
@@ -176,141 +186,92 @@ function createBox(horizontal) {
   return box;
 }
 
-function fetchArticles() {
-  // TODO: call fetch apis
+function getNewsHtmlPlace() {
+  if (stillBeforeSideBar) return proceduralSections;
+  else return proceduralSectionsAfterSideBar;
 }
 
-// default initializers
-carrouselNews = [
-  {
-    urlToImage: '../assets/images/ExampleHeadLineImg.png',
-    title: 'Titulo da materia 1',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente fuga suscipit, veritatis molestias numquam voluptatum eligendi dolore doloremque aliquam, cupiditate quasi asperiores est dolorum aut beatae harum ipsum ab quas.'
-  },
-  {
-    urlToImage: '../assets/images/ExampleHeadLineImg2.webp',
-    title: 'Titulo da materia 2',
-    description: 'God I love this song so fucking much, the trumpet in their music adds such a brash flair to it and with the drums carrying the whole beat perfectly and the subtle yet persistent undertone of the keyboard and the strong strokes of bass god I love music and miss playing in a band this song is epic'
+function generateCategorySection(parent, name, articles) {
+  articleCounter = 0;
+  const articleSection = createArticlesSection(parent, name, false);
+  articleSection.appendChild(createNewsBlock(articles.shift(), true));
+  const box = createBox();
+  articleSection.appendChild(box);
+  articles.forEach((article) => {
+    box.appendChild(createNewsBlock(article));
+  });
+}
+
+function generateMidSection(name, articles) {
+  const box = createBox(true);
+  const section = createArticlesSection(box, name, true);
+  articles.forEach((article) => {
+    section.appendChild(createNewsBlock(article, true));
+  })
+  
+  getNewsHtmlPlace().appendChild(box);
+  stillBeforeSideBar = false;
+}
+
+function generateNewsPage() {
+  // sidebar
+  const sideBarContent = latest.shift();
+  sideBarContent.forEach((article) => {
+    addNewsBlockToSideBar(createNewsBlock(article, true));
+  });
+
+  // categories
+  const categoriesNames = Object.keys(categories);
+  let hadNews = false;
+  do {
+    hadNews = false
+    const horizontalArea = createSection(true);
+    getNewsHtmlPlace().appendChild(horizontalArea);
+    categoriesNames.forEach((category) => {
+      const newsBlock = categories[category].shift();
+      if (newsBlock) {
+        generateCategorySection(horizontalArea, categoryTranslationKeys[category], newsBlock);
+        hadNews = true;
+      }
+    });
+    const midSection = latest.shift();
+    if (midSection) {
+      generateMidSection(categoryTranslationKeys['latest'], midSection);
+      hadNews = true;
+    }
+  } while (hadNews);
+}
+
+async function getAndDistributeNews() {
+  const hls = await fetchHighlights();
+  const lts = await fetchLatest();
+  const cat = await fetchCategories();
+
+  carrouselNews.push(...hls.articles);
+  initializeCarrousel();
+
+  // splits lts and the cat's into appropriated size chunks
+  // lts
+  for (let i = 0; i < (lts.articles.length / latestNewsSize); i++) {
+    latest.push(lts.articles.slice(i*latestNewsSize, (i+1) * latestNewsSize));
   }
-];
 
-initializeCarrousel();
+  // cat
+  Object.keys(cat).forEach((category) => {
+    if (!categories[category]) categories[category] = [];
+    for (let i = 0; i < (cat[category].articles.length / categoryNewsSize); i++) {
+      categories[category].push(cat[category].articles.slice(i*categoryNewsSize, (i+1) * categoryNewsSize));
+    }
+  });
 
-addNewsBlockToSideBar(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}, true))
+  [...document.getElementsByClassName('showAfterLoad')].forEach((item) => {
+    item.classList.remove('showAfterLoad');
+  });
+  [...document.getElementsByClassName('hideOnNewsLoad')].forEach((item) => {
+    item.style.display = 'none';
+  });
 
-addNewsBlockToSideBar(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true))
+  generateNewsPage();
+}
 
-addNewsBlockToSideBar(createNewsBlock({
-  title: 'Sla oq por aqui, ;-;',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}, true))
-
-addNewsBlockToSideBar(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true))
-
-const firstSection = createSection(true);
-proceduralSections.appendChild(firstSection);
-
-const sportsSection = createArticlesSection(firstSection, 'Esportes');
-const politicsSection = createArticlesSection(firstSection, 'Politica');
-const technologySection = createArticlesSection(firstSection, 'Tecnologia');
-
-sportsSection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
-
-const sportsSubArticlesBox = createBox();
-sportsSection.appendChild(sportsSubArticlesBox);
-
-sportsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-sportsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-sportsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-sportsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-
-politicsSection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
-
-const politicsSubArticlesBox = createBox();
-politicsSection.appendChild(politicsSubArticlesBox);
-
-politicsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-politicsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-politicsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-politicsSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-
-technologySection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
-
-const techSubArticlesBox = createBox();
-technologySection.appendChild(techSubArticlesBox);
-
-techSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-techSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-techSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-techSubArticlesBox.appendChild(createNewsBlock({
-  title: 'Muitas luzes e explosões no top 10 shows da virada',
-  urlToImage: '../assets/images/ExampleHeadLineImg2.webp'
-}));
-
-const mhlBox = createBox(true);
-const mhlSection = createArticlesSection(mhlBox, 'últimas notícias', true);
-proceduralSections.append(mhlBox);
-
-mhlSection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
-mhlSection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
-mhlSection.appendChild(createNewsBlock({
-  title: 'Caramba que titulo de matéria legal de jornalismo! UAU',
-  urlToImage: '../assets/images/ExampleHeadLineImg.png'
-}, true));
+getAndDistributeNews();

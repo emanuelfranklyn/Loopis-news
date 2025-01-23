@@ -1,3 +1,10 @@
+#content {
+  max-width: var(--max-page-width);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 #pageContent {
   height: fit-content;
   display: grid;
@@ -149,7 +156,7 @@
 
 .hlcHeadLinesImgWrapper {
   height: 100%;
-  width: 50vmin;
+  width: min(50vmin, calc(var(--max-page-width) / 4));
   position: relative;
   mask-image: linear-gradient(to right, black 95%, transparent 99%);
   transition: width 0.25s ease;
@@ -193,6 +200,11 @@
   gap: 0.5rem;
   height: 100%;
   overflow: hidden;
+}
+
+.headlinesTitleLink {
+  display: grid;
+  width: 100%;
 }
 
 .hlcHeadLinesTextContentTitle {
@@ -240,6 +252,8 @@
   border-radius: 100vw;
   margin-inline: auto;
   margin-block: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #carrouselItemsIndicator div {
@@ -266,11 +280,17 @@
   gap: 0.75rem;
 }
 
+.sideBar {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  height: fit-content;
+}
+
 .sideBarMobile {
   display: none;
 }
 
-#atfSidebar, #atfSidebarMobile {
+#atfSidebar, #atfSidebarMobile, .newsSkeleton {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
@@ -304,6 +324,12 @@
 
 .articleSection.horizontal .articlesList {
   flex-direction: row;
+}
+
+.highlightedArticle, .articleBlock {
+  transform: translateX(15%);
+  opacity: 0;
+  animation: appearIn 1s ease calc((var(--index) * 0.1s)) forwards;
 }
 
 .highlightedArticle {
@@ -395,8 +421,9 @@
 
 .horizontalSection {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2.5rem;
+  width: 100%;
 }
 
 .verticalSection {
@@ -404,6 +431,38 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-template-rows: 1fr;
   gap: 2.5rem;
+}
+
+.pageSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.newsSkeleton .loadingImage {
+  border-radius: 1rem;
+}
+
+#contentAfterSideBar {
+  width: 100%;
+  padding: 1rem;
+}
+
+.showAfterLoad {
+  display: none !important;
+}
+
+#contentAfterSideBarProcedural {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@keyframes appearIn {
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
 }
 
 /*==========[--max-page-width]==========*/
@@ -475,7 +534,7 @@
     margin: 0;
   }
 
-  #atfSidebarMobile {
+  #atfSidebarMobile, .newsSkeleton {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: 1fr;
@@ -483,5 +542,10 @@
     flex-shrink: 1;
     font-size: 0.85rem;
     gap: 0.5rem;
+  }
+
+  .articlesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
