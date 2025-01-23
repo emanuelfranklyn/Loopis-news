@@ -2,7 +2,7 @@ const maxAge = 2 * 60 * 60 * 1000; // 2 horas
 const keyToAge = "date";
 const localStorageKey = "loopis-news";
 
-const maxResultNumber=10;
+const maxResultNumber=20;
 const sitesDomain = "domains=nytimes.com,cnn.com,washingtonpost.com";
 const language = 'en';
 
@@ -173,8 +173,8 @@ async function fetchTechnology() {
 // returns { sports: [{...}], politics: [{...}], technology: [{...}] }
 async function fetchCategories(){
     const sports = await fetchSports();
-    const politics = await fetchTechnology();
-    const technology = await fetchSports();
+    const politics = await fetchPolitics();
+    const technology = await fetchTechnology();
 
     return {
         sports,
