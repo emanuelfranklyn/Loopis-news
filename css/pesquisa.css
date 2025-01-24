@@ -133,7 +133,7 @@ button:hover{
 #iconeAviso{
     width: 30px;
     height: 30px;
-    padding-right: 40px;
+    margin-right: 30px;
 }
 #fonte{
     padding-left: 15px;
@@ -154,7 +154,10 @@ button:hover{
     }
     #message{
         margin-left: 0px;
-        padding: 20px 10px;
+        padding: 20px 40px;
         font-size: 14px;
+    }
+    #iconeAviso{
+        margin-right: 15px;
     }
 }

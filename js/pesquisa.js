@@ -83,15 +83,14 @@ function message(type){
     let div = document.createElement('div');
     div.id = "message";
     let nameErro = document.createElement('span');
-    nameErro.textContent = "Erro: ";
+    nameErro.textContent = "Aviso: ";
     nameErro.id = "nameErro";
     let message = document.createElement('span');
     let icone = document.createElement('span');
     let imgIcone = document.createElement('img');
     imgIcone.src = '../assets/icons/aviso.png';
-    imgIcone.alt = "Eviso";
+    imgIcone.alt = 'Eviso';
     imgIcone.id = 'iconeAviso';
-    icone.appendChild(imgIcone);
     if(type === 'input'){
          message.textContent = "Campo vazio";
 
@@ -100,6 +99,7 @@ function message(type){
 
         message.textContent = "Nem um resultado encontrado";
     }
+    icone.appendChild(imgIcone)
     div.appendChild(icone)
     div.appendChild(nameErro);
     div.appendChild(message);
