@@ -1,0 +1,160 @@
+body{
+    background-color: #F4F5F7;
+}
+header{
+    background-color: #001534;
+    padding: 25px 0px 25px 0px;
+    display: flex;
+}
+.arrow_left{
+    margin-right: auto;
+    padding-left: 128px;
+}
+.arrow_left:hover{
+    cursor: pointer;
+}
+.logoLoopis{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+.campo-pesquisa{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
+}
+form input{
+    width: 280px;
+    height: 45px;
+    outline: none;
+    padding-left: 20px;
+    background-color: #6D6D6D; 
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+form input::placeholder{
+    font-size: 18px;
+    color: white;
+}
+button img{
+    width: 25px;
+    height: 25px;
+}
+button{
+    background-color: #2ABAFD;
+    outline:none;
+    border: none;
+    height: 45px;
+    width: 50px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+button:hover{
+    cursor: pointer;
+    /* background-color: #032b66; */
+    background-color: #0c59cc;
+}
+#sectionNoticias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+#noticias{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+#noticias div{
+    background-color: #fffcfc;
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgb(182, 168, 168);
+    padding-bottom: 5px;
+}
+#noticias div img{
+    width: 330px;
+    height: 170px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+#noticias div h5{
+    padding-left: 15px;
+    padding-top: 6px;
+}
+#noticias div #dataHora{
+    padding-left: 15px;
+    padding-top: 8px;
+    font-size: 10px;
+
+}
+#noticias div #descricao{
+    padding-left: 15px;
+    padding-top: 15px;
+    font-size: 13px;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.link a{
+    text-decoration: none;
+    font-size: 15px;
+    color: #001EE4;
+}
+.link a:hover{
+    color: #1935ee;
+
+}
+#message{
+    background-color: rgb(243, 62, 62);
+    padding: 20px 65px;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid brown;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: -50px;
+}
+#message #nameErro{
+    font-weight: bold;
+}
+#iconeAviso{
+    width: 30px;
+    height: 30px;
+    padding-right: 40px;
+}
+#fonte{
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 13px;
+
+}
+@media screen  and (max-width: 896px ){
+    .arrow_left{
+        padding-left: 5px;
+    }
+    form input{
+        width: 250px;
+    }
+    #noticias{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+    #message{
+        margin-left: 0px;
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+}
