@@ -149,6 +149,8 @@ body {
   height: 2.25rem;
   width: 2.25rem;
   padding: 0.25rem;
+  color: var(--header-text-color);
+  font-weight: bold;
 }
 
 #header .leftSideNavigation .headerPageLink {
