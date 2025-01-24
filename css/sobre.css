@@ -1,12 +1,12 @@
-body{
-    width: 100%;
+:root{
+    --cartao-width: 200px;
+    --cartao-height: 190px;
+    --padding-cartao: 30px;
 }
 
-header{
-    background-color: #001534;
-    padding: 10px;
-    margin: 3.125vh 0 !important;
-    z-index: -1;
+body{
+    width: 100%;
+    font-family: "Roboto", serif;
 }
 
 #logo{
@@ -18,7 +18,10 @@ header{
     flex-direction: column;    
     justify-content: space-between;
 
-    margin: 0px 9.5%;
+    margin: 30px auto;
+    padding-top: 30px;
+    max-width: calc(var(--max-page-width) - 500px);
+    border-radius: 2rem;
     background-color: #F4F5F7;
 }
 
@@ -38,10 +41,12 @@ section{
     margin-bottom: 1em;
 }
 
-.linha{
-    --cartao-width: 140px;
-    --padding-cartao: 30px;
+#texto-principal{
+    width: 74.24%;;
+    margin-inline: auto;
+}
 
+.linha{
     max-width: calc((var(--cartao-width) + (var(--padding-cartao)*2)) * 3 + (1rem * 2));
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +72,7 @@ section{
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: var(--cartao-width);
-    height: var(--cartao-width);
+    height: var(--cartao-height);
 
     display: flex;
     flex-direction: column;
@@ -80,11 +85,12 @@ section{
 }
 
 #caixa-branca{
-    width: auto;
+    width: 74.24%;
+    min-width: calc(var(--cartao-width) + 2*var(--padding-cartao)); /* Nao pode ficar menor que os cartoes */
     height: auto;
     border-radius: 10px;
     background-color: white;
-
+    margin-inline: auto;
     overflow-x: auto;
 }
 
@@ -127,6 +133,7 @@ section{
     width: 380px;
     text-align: center;
     flex-shrink: 0;
+    max-width: 100%;
 }
 
 .desenvolvedor-img {
@@ -147,4 +154,17 @@ section{
     font-size: 1em;
     color: #666;
     line-height: 1.1;
+}
+
+/*==========[Thin Mobile Layout]==========*/
+
+@media only screen and (max-width: 456px) {
+    .linha{
+        --cartao-width: 280px;
+        --cartao-height: 200px;
+    }
+
+    .cartao{
+        justify-content: space-evenly !important;
+    }
 }
