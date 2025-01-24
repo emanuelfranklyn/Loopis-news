@@ -117,8 +117,8 @@ async function renderSidebarNews(newsType, containerId) {
                 return;
         }
 
-        for (let news of newsData.articles) {
-            createSidebarNewsItem(news, newsList);
+        for(let i = 0; i < 3; i++) {
+            createSidebarNewsItem(newsData.articles[i], newsList);
         }
     } catch(e) {
         console.error("Erro ao tentar renderizar notícias da sidebar: " + e);

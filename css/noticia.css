@@ -15,8 +15,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 42.87vh;
-    max-height: 55vw;
+    height: 300px;
     background-color: #001534;
     z-index: -1;
 }
@@ -110,7 +109,7 @@ main {
 
 .news-title {
     font-size: 0.95rem;
-    max-height: 4.5vw;
+    max-height: 4.1vw;
     overflow: hidden;
 }
 
