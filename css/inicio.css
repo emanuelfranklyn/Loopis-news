@@ -3,6 +3,7 @@
   margin-inline: auto;
   display: flex;
   flex-direction: column;
+  --index: 0;
 }
 
 #pageContent {

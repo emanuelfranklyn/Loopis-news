@@ -186,6 +186,11 @@ body {
   padding-block: 3rem;
   isolation: isolate;
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem;
 }
 
 #footer::before {
@@ -196,6 +201,12 @@ body {
   left: calc((50vw - (var(--max-page-width) / 2)) * -1);
   background: var(--header-background);
   z-index: -1;
+}
+
+#footer .leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 #footer .logoArea {
@@ -216,6 +227,39 @@ body {
   color: var(--loopis-news-text-color);
   font-weight: 700;
   font-size: 2.25em;
+}
+
+#footer .footer-moto {
+  color: var(--text-dark-background);
+  font-size: 1.15rem;
+}
+
+#footer .rightSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+#footer .footer-social {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  text-decoration: none;
+  width: fit-content;
+  justify-content: flex-end;
+}
+
+#footer .footer-social-text {
+  color: var(--text-dark-background);
+  font-size: 1.15rem;
+}
+
+#footer .footer-social-img {
+  aspect-ratio: 1;
+  width: 2rem;
+  height: auto;
 }
 
 .loadingBar {
@@ -267,6 +311,10 @@ body {
 /*==========[Mobile Layout]==========*/
 @media only screen and (max-width: 768px) {
   #header .logoArea {
+    font-size: 0.75rem;
+  }
+
+  #footer .logoArea {
     font-size: 0.75rem;
   }
 }
