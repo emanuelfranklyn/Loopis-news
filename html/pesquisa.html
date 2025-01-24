@@ -8,9 +8,21 @@
     <link rel="stylesheet" href="../css/pesquisa.css">
 </head>
 <body>
-    <header class="header">
-        <a class="arrow_left" href="#"><img src="../assets/images/Arrow left.svg" alt="voltar"></a>
-        <img class="logoLoopis" src="../assets/images/logo-png.png" alt="Logo da Loopis News">
+    <header id="header">
+      <div class="leftSideNavigation">
+        <button id="headerSkipNavigation" onclick="skipNavigation()">Pular Navegação</button>
+        <a class="headerPageLink" href="./inicio.html" title="Voltar">
+          <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="logoArea">
+        <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+        <span class="lnLogoText">NEWS</span>
+      </div>
+      <div class="rightSideNavigation">
+      </div>
     </header>
     <main>
         <section class="campo-pesquisa">
