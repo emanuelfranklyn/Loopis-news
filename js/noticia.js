@@ -1,5 +1,3 @@
-import { fetchCategories, fetchLatest, saveCurrentArticle, getCurrentArticle } from "./requests.js";
-
 function formatDate(dateString) {
     const date = new Date(dateString);
 
