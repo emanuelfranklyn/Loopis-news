@@ -1,22 +1,22 @@
 let button = document.querySelector("#button")
-let divPrincipal = document.querySelector("#noticias");
-let mensagemErro = document.querySelector("#mensagemErro");
+let divNews = document.querySelector("#noticias");
+let messageErro = document.querySelector("#mensagemErro");
 button.addEventListener('click', async (evt)=>{
     evt.preventDefault();
     let keyWord = document.querySelector("#inputPesquisa").value;
     if(!keyWord){
-        mensagemErro.textContent = " ";
+        messageErro.textContent = " ";
         message('input');
         return;
     }
     let news =  await fetchSearch(keyWord);
     if(news.totalResults === 0){
-        mensagemErro.textContent = " ";
+        messageErro.textContent = " ";
         message('api');
         return;
     }
-    divPrincipal.textContent = " ";
-    mensagemErro.textContent = " ";
+    divNews.textContent = " ";
+    messageErro.textContent = " ";
     createDom(news);
 
 })
@@ -49,7 +49,7 @@ async function createDom(news){
         div.appendChild(dateTime);
         div.appendChild(description);
         div.appendChild(span);
-        divPrincipal.appendChild(div);
+        divNews.appendChild(div);
 
         arrayNews.push(news.articles[i]);
     }
@@ -58,7 +58,6 @@ async function createDom(news){
 function redirectNewsPage(id){
     saveCurrentArticle(arrayNews[id]);
     window.location.href = "../html/noticia.html";
-    console.log(getCurrentArticle());
 }
 
 function formatDate(dateTime){
@@ -75,8 +74,8 @@ function formatDate(dateTime){
 
 
 }
-function message(tipo){
-    divPrincipal.textContent = " ";
+function message(type){
+    divNews.textContent = " ";
     let div = document.createElement('div');
     div.id = "message";
     let nameErro = document.createElement('span');
@@ -89,7 +88,7 @@ function message(tipo){
     imgIcone.alt = "Eviso";
     imgIcone.id = 'iconeAviso';
     icone.appendChild(imgIcone);
-    if(tipo === 'input'){
+    if(type === 'input'){
          message.textContent = "Campo vazio";
 
     }
@@ -100,6 +99,6 @@ function message(tipo){
     div.appendChild(icone)
     div.appendChild(nameErro);
     div.appendChild(message);
-    mensagemErro.appendChild(div);
+    messageErro.appendChild(div);
 
 }
