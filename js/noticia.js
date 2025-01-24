@@ -19,6 +19,27 @@ function validateNewsData(newsData) {
     }
 }
 
+function generateLorem(qtdChars) {
+    const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum blandit rutrum. Mauris consequat sagittis tortor, vitae fringilla enim tristique eget. Donec id tempor dui, id commodo nulla. Sed pellentesque vulputate suscipit. Donec vitae lobortis ex. Suspendisse mauris libero, mollis nec turpis id, volutpat consequat dui. Aenean volutpat porta congue. Maecenas blandit lacus id quam faucibus, vitae dictum purus interdum. Nulla at ultrices sapien, ac malesuada sapien.\nNullam facilisis, justo ut tristique convallis, nunc est lacinia felis, vel viverra arcu diam a neque. Aliquam euismod fringilla tincidunt. Nullam fermentum sollicitudin orci ac vulputate. Integer eleifend nunc quis lacus vehicula sodales in sit amet nisi. Suspendisse commodo volutpat augue, ac venenatis arcu. Aliquam condimentum justo a lorem tincidunt, sed aliquam odio commodo. Donec tincidunt accumsan ultricies. Duis eleifend elit magna, eget dictum leo eleifend et. Quisque lacinia eros tincidunt, tincidunt enim eu, posuere tellus. Sed cursus lorem sem, et congue enim dapibus molestie. Nulla rhoncus convallis justo, id molestie massa aliquam ut. Aenean ultrices vehicula nisi at ullamcorper.\n";
+    let loremRepeat = Math.ceil(qtdChars / lorem.length);
+    let loremText = lorem.repeat(loremRepeat);
+    return loremText.slice(0, qtdChars);
+}
+
+function fillContentWithLorem(content) {
+    let match = content.match(/\[\+(\d+) chars\]$/);
+    
+    if(match) {
+        let cleanedContent = content.replace(/\s\[\+\d+\schars\]$/, "");
+        cleanedContent += "\n";
+        const qtdChars = parseInt(match[1]);
+        const newText = cleanedContent + generateLorem(qtdChars)
+        return newText;
+    }
+    
+    return content;
+}
+
 function createSidebarNewsItem(news, newsList) {
     const newsItem = document.createElement('li');
     newsItem.classList.add('news-item');
@@ -62,7 +83,7 @@ function renderMainNews() {
 
         newsTitle.textContent = currentNews.title;
 
-        newsDescription.textContent = currentNews.description.replace(/\n/g, '<br>');
+        newsDescription.innerHTML = "&emsp;" + currentNews.description.replace(/\n/g, '<br>&emsp;');
 
         newsAutor.textContent = currentNews.author;
 
@@ -71,7 +92,7 @@ function renderMainNews() {
 
         newsDate.textContent = formatDate(currentNews.publishedAt);
 
-        newsContent.textContent = currentNews.content;
+        newsContent.innerHTML = "&emsp;" + fillContentWithLorem(currentNews.content).replace(/\n/g, '<br>&emsp;');
     } catch(e) {
         console.error("Erro ao tentar renderizar notícia principal: " + e);
     }
