@@ -9,19 +9,6 @@ body{
     font-family: "Roboto", serif;
 }
 
-.header-pagina {
-    display: flex;
-    margin: 3.125vh 9.38vw;
-    justify-content: space-between;
-}
-
-header{
-    background-color: #001534;
-    padding: 10px;
-    margin: 3.125vh 0 !important;
-    z-index: -1;
-}
-
 #logo{
     padding: 4px;
 }
@@ -31,7 +18,8 @@ header{
     flex-direction: column;    
     justify-content: space-between;
 
-    margin: 0px auto;
+    margin: 30px auto;
+    padding-top: 30px;
     max-width: calc(var(--max-page-width) - 500px);
     border-radius: 2rem;
     background-color: #F4F5F7;
