@@ -43,11 +43,15 @@ async function createDom(news){
         link.textContent = "Leia mais";
         link.href=`javascript:redirectNewsPage(${i})`;
         link.id = i;
+        let source = document.createElement('p');
+        source.textContent ="Fonte: " + news.articles[i].source.name;
+        source.id = 'fonte';
         span.appendChild(link);
         div.appendChild(img);
         div.appendChild(h5);
         div.appendChild(dateTime);
         div.appendChild(description);
+        div.appendChild(source);
         div.appendChild(span);
         divNews.appendChild(div);
 
