@@ -1,12 +1,22 @@
 let button = document.querySelector("#button")
 let divPrincipal = document.querySelector("#noticias");
+let mensagemErro = document.querySelector("#mensagemErro");
 button.addEventListener('click', async (evt)=>{
     evt.preventDefault();
     let keyWord = document.querySelector("#inputPesquisa").value;
-    let news =  await fetchSearch(keyWord);
-    if(!news){
-        message();
+    if(!keyWord){
+        mensagemErro.textContent = " ";
+        message('input');
+        return;
     }
+    let news =  await fetchSearch(keyWord);
+    if(news.totalResults === 0){
+        mensagemErro.textContent = " ";
+        message('api');
+        return;
+    }
+    divPrincipal.textContent = " ";
+    mensagemErro.textContent = " ";
     createDom(news);
 
 })
@@ -21,7 +31,7 @@ async function createDom(news){
         img.alt = "Imagem da noticia";
         let h5 = document.createElement('h5');
         h5.textContent = news.articles[i].title;
-        let dateTime = document.createElement('span');
+        let dateTime = document.createElement('p');
         dateTime.id= "dataHora";
         dateTime.textContent = formatDate(news.articles[i].publishedAt);
         let description =  document.createElement('p');
@@ -33,17 +43,10 @@ async function createDom(news){
         link.textContent = "Leia mais";
         link.href=`javascript:redirectNewsPage(${i})`;
         link.id = i;
-        let source = document.createElement('span');
-        source.textContent = "Fonte: " + news.articles[i].source.name;
-        source.id = "fonte";
-        let dateAndSource = document.createElement('span');
-        dateAndSource.id = 'dataFonte'
-        dateAndSource.appendChild(dateTime);
-        dateAndSource.appendChild(source);
         span.appendChild(link);
         div.appendChild(img);
         div.appendChild(h5);
-        div.appendChild(dateAndSource);
+        div.appendChild(dateTime);
         div.appendChild(description);
         div.appendChild(span);
         divPrincipal.appendChild(div);
@@ -55,6 +58,7 @@ async function createDom(news){
 function redirectNewsPage(id){
     saveCurrentArticle(arrayNews[id]);
     window.location.href = "../html/noticia.html";
+    console.log(getCurrentArticle());
 }
 
 function formatDate(dateTime){
@@ -71,12 +75,31 @@ function formatDate(dateTime){
 
 
 }
-function message(){
+function message(tipo){
+    divPrincipal.textContent = " ";
     let div = document.createElement('div');
-    div.className = "message";
+    div.id = "message";
     let nameErro = document.createElement('span');
+    nameErro.textContent = "Erro: ";
     nameErro.id = "nameErro";
     let message = document.createElement('span');
-    message.textContent = "Nem um resultado encontrado"
+    let icone = document.createElement('span');
+    let imgIcone = document.createElement('img');
+    imgIcone.src = '../assets/icons/aviso.png';
+    imgIcone.alt = "Eviso";
+    imgIcone.id = 'iconeAviso';
+    icone.appendChild(imgIcone);
+    if(tipo === 'input'){
+         message.textContent = "Campo vazio";
+
+    }
+    else{
+
+        message.textContent = "Nem um resultado encontrado";
+    }
+    div.appendChild(icone)
+    div.appendChild(nameErro);
+    div.appendChild(message);
+    mensagemErro.appendChild(div);
 
 }
