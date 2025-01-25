@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Pesquisa</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/pesquisa.css">
+</head>
+<body>
+    <header id="header">
+      <div class="leftSideNavigation">
+        <button id="headerSkipNavigation" onclick="skipNavigation()">Pular Navegação</button>
+        <a class="headerPageLink" href="./inicio.html" title="Voltar">
+          <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="logoArea">
+        <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+        <span class="lnLogoText">NEWS</span>
+      </div>
+      <div class="rightSideNavigation">
+      </div>
+    </header>
+    <main>
+        <section class="campo-pesquisa">
+            <form>
+                <input type="text" id="inputPesquisa" placeholder="Pesquisar...">
+                <button id="button"><img src="../assets/icons/search.png" alt="pesquisar"></button>
+            </form>
+        </section>
+        <section id="sectionNoticias">
+            <div id="noticias">
+
+            </div>
+            <div id="mensagemErro">
+
+            </div>
+
+        </section>
+    </main>
+
+    <script src="../js/pesquisa.js"></script>
+    <script src="../js/requests.js"></script>
+</body>
+</html>
