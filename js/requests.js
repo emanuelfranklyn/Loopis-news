@@ -78,13 +78,6 @@ function factoryRequisitionEverything(sortBy, atributeName) {
         atributeName = !pesquisa ? atributeName : pesquisa;
         let currentPage = allPages[atributeName];
 
-        if(currentPage == pesquisa){
-            console.log("Bom");
-        }
-        else{
-            console.log("Ruim");
-        }
-
         //Se nao estiver no localStorage busca e salva
         if(!currentPage){
             const token = await readToken();

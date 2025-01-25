@@ -261,6 +261,7 @@
   --news-number: 0; /* default value, replaced by javascript with the element index */
   aspect-ratio: 1;
   width: 0.75rem;
+  background: var(--carrousel-indicator-selected-color);
   background: hsl(from var(--carrousel-indicator-selected-color) h s calc(l + (50 * (var(--carrousel-indicator-default-luminance-variation) / 100)) + (pow(0, abs(var(--news-number) - var(--currentNews))) * ((50 * (var(--carrousel-indicator-default-luminance-variation) / 100)) * -1))));
   border-radius: 50%;
   cursor: pointer;

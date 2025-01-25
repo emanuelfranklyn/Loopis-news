@@ -56,6 +56,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   height: fit-content;
+  scroll-behavior: smooth;
 }
 
 #header {
@@ -98,6 +99,7 @@ body {
   pointer-events: none;
   cursor: pointer;
   position: absolute;
+  width: fit-content;
   top: 1rem;
   left: 1rem;
 }
