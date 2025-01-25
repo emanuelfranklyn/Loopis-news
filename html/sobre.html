@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/sobre.css">
+
+    <title>Loopis News</title>
+    <script defer src="../js/global.js"></script>
+</head>
+
+<body>    
+    <header id="header">
+        <div class="leftSideNavigation">
+            <button id="headerSkipNavigation" onclick="skipNavigation()">Pular Navegação</button>
+            <a class="headerPageLink" href="./inicio.html" title="Voltar">
+            <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </a>
+        </div>
+        <div class="logoArea">
+            <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+            <span class="lnLogoText">NEWS</span>
+        </div>
+        <div class="rightSideNavigation">
+            <a class="headerPageLink" href="./pesquisa.html" title="Buscar">
+            <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="16" height="16" id="icon-bound" fill="none" />
+                <path d="M15.708,13.587l-3.675-3.675C12.646,8.92,13,7.751,13,6.5C13,2.91,10.09,0,6.5,0S0,2.91,0,6.5S2.91,13,6.5,13 c1.251,0,2.42-0.354,3.412-0.967l3.675,3.675c0.389,0.389,1.025,0.389,1.414,0l0.707-0.707 C16.097,14.612,16.097,13.976,15.708,13.587z M3.318,9.682C2.468,8.832,2,7.702,2,6.5s0.468-2.332,1.318-3.182S5.298,2,6.5,2 s2.332,0.468,3.182,1.318C10.532,4.168,11,5.298,11,6.5s-0.468,2.332-1.318,3.182C8.832,10.532,7.702,11,6.5,11 S4.168,10.532,3.318,9.682z" />
+            </svg>
+            </a>
+        </div>
+    </header>
+
+    <div id="body-conteudo">
+        <section alt="sobre" id="sobre">
+            <h2 class="titulo-secoes"> Sobre </h2>
+            <p id="texto-principal">
+                Loopis News é um projeto que reune notícias de fontes
+                diversas e permite de forma prática ao usuário buscar informações.  
+                Desenvolvido como parte do processo seletivo para a Loopis, 
+                o site apresenta conteúdos atualizados dinamicamente sobre as 
+                categorias de política, tecnologia e esportes, bem como as
+                notícias mais recentes e mais populares do momento.
+                
+                <br><br>
+
+                De modo geral cada programador ficou responsável pela prototipação, implementação,
+                design e consumo da API na sua respectiva página. A divisão segue detalhada na seção
+                de desenvolvedores.
+            </p>
+        </section>
+
+        <section class="tecnologias">
+            <h2 class="titulo-secoes"> Tecnologias </h2>
+
+            <div class="linha">                
+                <div>
+                    <img src="../assets/icons/css.png" alt="">
+                    <div class="cartao">
+                        <h2> CSS </h2>
+                        <p> Estilização visual e responsividade. </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="../assets/icons/js.png" alt="">
+                    <div class="cartao">
+                        <h2> Javascript </h2>
+                        <p> Requisições e dinamismo das páginas </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="../assets/icons/news_api.png" alt="">
+                    <div class="cartao">
+                        <h2> News API </h2>
+                        <p>Integração com fontes de notícias.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="../assets/icons/html.png" alt="">
+                    <div class="cartao">
+                        <h2> HTML </h2>
+                        <p> Estruturação das páginas e conteúdo. </p>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="../assets/icons/github.png" alt="">
+                    <div class="cartao">
+                        <h2> GitHub </h2>
+                        <p> Controle de versionamento do código. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section alt="desenvolvedores">
+            <h2 class="titulo-secoes"> Desenvolvedores </h2>
+            <div id="caixa-branca">
+                <div class="scroll-container">
+
+                    <div class="desenvolvedor">
+                        <img src="../assets/images/emanuel.webp" class="desenvolvedor-img">
+                        <h2 class="desenvolvedor-nome"> Emanuel </h2>
+                        <p class="desenvolvedor-descricao"> 
+                            Desenvolveu a página inicial, boa parte do css global e ajudou na revisão de códigos
+                            e a manter padrões de projetos da Loopis.
+                        </p>
+                    </div>
+
+                    <div class="desenvolvedor">
+                        <img src="../assets/images/gerlandio.webp" class="desenvolvedor-img">
+                        <h2 class="desenvolvedor-nome"> Gerlândio </h2>
+                        <p class="desenvolvedor-descricao">
+                            Desenvolveu e prototipou a página de buscar notícias por palavras chaves utilizando o
+                            endpoint everything.
+                        </p>
+                    </div>
+
+                    <div class="desenvolvedor">
+                        <img src="../assets/images/tasso.jpg" class="desenvolvedor-img">
+                        <h2 class="desenvolvedor-nome"> Tasso </h2>
+                        <p class="desenvolvedor-descricao">
+                            Implementou a página de visualização das notícias expandidas. Ajudou em grande parte da 
+                            prototipação do site no figma e questões de design.
+                        </p>
+                    </div>
+
+                    <div class="desenvolvedor">
+                        <img src="../assets/images/victor.jpg" class="desenvolvedor-img">
+                        <h2 class="desenvolvedor-nome"> Victor </h2>
+                        <p class="desenvolvedor-descricao">
+                            Implementou e prototipou a página sobre o projeto. Criou as funções que buscam na API e
+                            armazenam em cache no local storage.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer id="footer">
+        <div class="leftSection">
+            <div class="logoArea">
+                <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+                <span class="lnLogoText">NEWS</span>
+            </div>
+            <span class="footer-moto">© 2025</span>
+            <span class="footer-moto">Se mantenha no Loop das notícias</span>
+        </div>
+        <div class="rightSection">
+            <a class="footer-social" href="https://www.instagram.com/loopisjr">
+                <span class="footer-social-text">@loopisjr</span>
+                <img class="footer-social-img" src="../assets/icons/instagram.svg">
+            </a>
+            <a class="footer-social" href="https://api.whatsapp.com/send?phone=55839829-5472">
+                <span class="footer-social-text">+55 (83) 9829-5472</span>
+                <img class="footer-social-img" src="../assets/icons/whatsapp.svg">
+            </a>
+            <a class="footer-social" href="https://github.com/loopisjr">
+                <span class="footer-social-text">loopisjr</span>
+                <img class="footer-social-img" src="../assets/icons/github.svg">
+            </a>
+        </div>
+      </footer>
+</body>
+</html>

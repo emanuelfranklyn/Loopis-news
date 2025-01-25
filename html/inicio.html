@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loopis News - Inicio</title>
+    <link href="../css/global.css" rel="stylesheet" type="text/css">
+    <link href="../css/inicio.css" rel="stylesheet" type="text/css">
+    <script defer src="../js/requests.js"></script>
+    <script defer src="../js/global.js"></script>
+    <script defer src="../js/homepage.js"></script>
+  </head>
+  <body>
+    <header id="header">
+      <div class="leftSideNavigation">
+        <button id="headerSkipNavigation" onclick="skipNavigation()">Pular Navegação</button>
+        <a class="headerPageLink hidden" href="" title="Voltar" aria-hidden="true">
+          <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="headerPageLink" href="./sobre.html" title="Sobre">
+          <span>Sobre</span>
+        </a>
+      </div>
+      <div class="logoArea">
+        <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+        <span class="lnLogoText">NEWS</span>
+      </div>
+      <div class="rightSideNavigation">
+        <a class="headerPageLink" href="./pesquisa.html" title="Buscar">
+          <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect width="16" height="16" id="icon-bound" fill="none" />
+            <path d="M15.708,13.587l-3.675-3.675C12.646,8.92,13,7.751,13,6.5C13,2.91,10.09,0,6.5,0S0,2.91,0,6.5S2.91,13,6.5,13 c1.251,0,2.42-0.354,3.412-0.967l3.675,3.675c0.389,0.389,1.025,0.389,1.414,0l0.707-0.707 C16.097,14.612,16.097,13.976,15.708,13.587z M3.318,9.682C2.468,8.832,2,7.702,2,6.5s0.468-2.332,1.318-3.182S5.298,2,6.5,2 s2.332,0.468,3.182,1.318C10.532,4.168,11,5.298,11,6.5s-0.468,2.332-1.318,3.182C8.832,10.532,7.702,11,6.5,11 S4.168,10.532,3.318,9.682z" />
+          </svg>
+        </a>
+      </div>
+    </header>
+    <main id="content">
+      <div id="pageContent">
+        <div class="mainContent">
+          <div id="headLineCarrousel" class="headLineCarrousel" style="--currentNews-image: unset; --nextNews-image: unset">
+            <div class="headLineCarrouselCover leftCover"></div>
+            <div class="headLineCarrouselBGContainer">
+              <div class="headLineCarrouselBG1"></div>
+              <div class="headLineCarrouselBG2"></div>
+              <div class="headLineCarrouselBGOverlays"></div>
+            </div>
+            <div class="headLineCarrouselContent">
+              <button id="goToPreviousCarrouselItem" class="hlcControlsArrow hlcControlsPreviousHeadline" onclick="goToPreviousCarrouselItem()">
+                <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div id="hlcHeadLines">
+                <div id="hlcHeadLinesImgWrapper" class="hlcHeadLinesImgWrapper" onclick="carrouselGoToArticle()">
+                  <div id="carrouselImagePlaceHolderImage" class="loadingImage"></div>
+                  <img id="hlcHeadLinesImgCurrent" class="hlcHeadLinesImgCurrent" src="">
+                  <img id="hlcHeadLinesImgNextEffect" class="hlcHeadLinesImgNextEffect" src="">
+                  <img id="hlcHeadLinesImgNext" class="hlcHeadLinesImgNext" src="">
+                </div>
+                <div class="hlcHeadLinesTextContent">
+                  <h1 class="hlcHeadLinesTextContentTitle">Destaques</h1>
+                  <a class="headlinesTitleLink" href="javascript:carrouselGoToArticle()" title="Carregando..."><h2 id="hlcHLTCArticleTitle" class="hlcHeadLinesTextContentArticleTitle"><span class="loadingBar half"></span></h2></a>
+                  <p id="hlcHeadLinesTextContentArticleDescription" class="hlcHeadLinesTextContentArticleDescription">
+                    <span class="loadingBar"></span>
+                    <span class="loadingBar"></span>
+                    <span class="loadingBar"></span>
+                    <span class="loadingBar"></span>
+                    <span class="loadingBar half"></span>
+                  </p>
+                  <div id="carrouselItemsIndicator"></div>
+                </div>
+              </div>
+              <button id="goToNextCarrouselItem" class="hlcControlsArrow hlcControlsNextHeadline" onclick="goToNextCarrouselItem()">
+                <svg viewBox="4 4 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="hlcIndicators">
+            </div>
+            <div class="headLineCarrouselCover rightCover"></div>
+          </div>
+          <div class="pageBody">
+            <div class="sideBarMobile">
+              <h1 class="sectionTitle">Últimas notícias</h1>
+              <div class="newsSkeleton hideOnNewsLoad">
+                <div class="loadingImage"></div>
+                <div class="loadingImage"></div>
+                <div class="loadingImage"></div>
+                <div class="loadingImage"></div>
+              </div>
+              <div id="atfSidebarMobile"></div>
+            </div>
+            <div class="pageSkeleton hideOnNewsLoad">
+              <div class="horizontalSection">
+                <div class="articleSection">
+                  <span class="loadingBar tall half"></span>
+                  <div class="articlesList">
+                    <div class="loadingImage highlightedArticle"></div>
+                    <div class="genericBox">
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="articleSection">
+                  <span class="loadingBar tall half"></span>
+                  <div class="articlesList">
+                    <div class="loadingImage highlightedArticle"></div>
+                    <div class="genericBox">
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="articleSection">
+                  <span class="loadingBar tall half"></span>
+                  <div class="articlesList">
+                    <div class="loadingImage highlightedArticle"></div>
+                    <div class="genericBox">
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                      <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="genericBox">
+                <div class="articleSection horizontal">
+                  <span class="loadingBar tall quarter"></span>
+                  <div class="articlesList">
+                    <div class="loadingImage highlightedArticle"></div>
+                    <div class="loadingImage highlightedArticle"></div>
+                    <div class="loadingImage highlightedArticle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="proceduralSections" class="showAfterLoad">
+            </div>
+          </div>
+        </div>
+        <div class="sideBar">
+          <h1 class="sectionTitle">Últimas notícias</h1>
+          <div class="newsSkeleton hideOnNewsLoad">
+            <div class="loadingImage"></div>
+            <div class="loadingImage"></div>
+            <div class="loadingImage"></div>
+            <div class="loadingImage"></div>
+          </div>
+          <div id="atfSidebar" class="showAfterLoad"></div>
+        </div>
+      </div>
+      <div id="contentAfterSideBar">
+        <div class="pageSkeleton hideOnNewsLoad">
+          <div class="horizontalSection">
+            <div class="articleSection">
+              <span class="loadingBar tall half"></span>
+              <div class="articlesList">
+                <div class="loadingImage highlightedArticle"></div>
+                <div class="genericBox">
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="articleSection">
+              <span class="loadingBar tall half"></span>
+              <div class="articlesList">
+                <div class="loadingImage highlightedArticle"></div>
+                <div class="genericBox">
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="articleSection">
+              <span class="loadingBar tall half"></span>
+              <div class="articlesList">
+                <div class="loadingImage highlightedArticle"></div>
+                <div class="genericBox">
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                  <div class="articleBlock"><div class="loadingImage abImgWrapper"></div><span><span class="loadingBar"></span><span class="loadingBar"></span><span class="loadingBar quarter"></span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="genericBox">
+            <div class="articleSection horizontal">
+              <span class="loadingBar tall quarter"></span>
+              <div class="articlesList">
+                <div class="loadingImage highlightedArticle"></div>
+                <div class="loadingImage highlightedArticle"></div>
+                <div class="loadingImage highlightedArticle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="contentAfterSideBarProcedural" class="showAfterLoad"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="leftSection">
+        <div class="logoArea">
+          <img class="lnLogoImg" src="../assets/images/LoopisLogoLight.png">
+          <span class="lnLogoText">NEWS</span>
+        </div>
+        <span class="footer-moto">© 2025</span>
+        <span class="footer-moto">Se mantenha no Loop das notícias</span>
+      </div>
+      <div class="rightSection">
+        <a class="footer-social" href="https://www.instagram.com/loopisjr">
+          <span class="footer-social-text">@loopisjr</span>
+          <img class="footer-social-img" src="../assets/icons/instagram.svg">
+        </a>
+        <a class="footer-social" href="https://api.whatsapp.com/send?phone=55839829-5472">
+          <span class="footer-social-text">+55 (83) 9829-5472</span>
+          <img class="footer-social-img" src="../assets/icons/whatsapp.svg">
+        </a>
+        <a class="footer-social" href="https://github.com/loopisjr">
+          <span class="footer-social-text">loopisjr</span>
+          <img class="footer-social-img" src="../assets/icons/github.svg">
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
